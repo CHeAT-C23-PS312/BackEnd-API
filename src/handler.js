@@ -1,8 +1,7 @@
-console.log('handler file is accessed');
 const bcrypt = require('bcrypt');
 const app = require('./app');
 const { clearSession } = require('./auth');
-// const auth = require('./auth');
+
 
 const signup = async (request, h) => {
     const { username, password } = request.payload;

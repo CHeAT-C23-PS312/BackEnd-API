@@ -1,15 +1,7 @@
-console.log('app file is accessed');
-// require('dotenv').config();
 const axios = require('axios');
 const mysql = require('mysql');
 const { createUser, getUserByUsername } = require('./auth');
 
-// const connection = mysql.createConnection({
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
-//     database: process.env.DB_NAME,
-// });
 
 const DB_HOST = '34.101.187.193';
 const DB_USER = 'ucheat';

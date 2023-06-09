@@ -1,4 +1,3 @@
-console.log('Routes file is accessed');
 const handler = require('./handler');
 
 
@@ -7,6 +6,9 @@ const routes = [
         method: 'POST',
         path: '/signup',
         handler: handler.signup,
+        options: {
+            auth: false,
+        },
     },
     {
         method: 'POST',
@@ -20,17 +22,26 @@ const routes = [
         method: 'POST',
         path: '/chatbot',
         handler: handler.chatbot,
+        options: {
+            auth: false,
+        },
     },
     {
         method: 'POST',
         path: '/logout',
         handler: handler.logout,
+        options: {
+            auth: false,
+        },
     },
 
     {
         method: 'GET',
         path: '/recipes/{id}',
         handler: handler.getRecipeDetail,
+        options: {
+            auth: false,
+        },
     },
     {
         method: 'POST',
@@ -51,6 +62,9 @@ const routes = [
         method: 'GET',
         path: '/recipes/search',
         handler: handler.searchRecipes,
+        options: {
+            auth: false,
+        },
     },
 ];
 

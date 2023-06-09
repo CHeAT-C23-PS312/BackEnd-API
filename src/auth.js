@@ -1,4 +1,3 @@
-console.log('auth file is accessed');
 const users = [
     {
         id: 1,
@@ -24,13 +23,7 @@ const createUser = (username, password) => {
     return newUser;
 };
 
-const validateSession = (request, session) => {
-    const user = users.find((u) => u.id === session.id);
-    if (!user) {
-        return { valid: false };
-    }
-    return { valid: true, credentials: user };
-};
+
 
 const clearSession = (request, h) => {
     request.cookieAuth.clear();
@@ -40,6 +33,5 @@ const clearSession = (request, h) => {
 module.exports = {
     getUserByUsername,
     createUser,
-    validateSession,
     clearSession,
 };

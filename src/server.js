@@ -1,8 +1,7 @@
-console.log('server file is accessed');
 const Hapi = require('@hapi/hapi');
 const Cookie = require('@hapi/cookie');
 const routes = require('./routes');
-const auth = require('./auth');
+// const auth = require('./auth');
 
 const init = async () => {
     const server = Hapi.server({
@@ -20,11 +19,10 @@ const init = async () => {
     server.auth.strategy('session', 'cookie', {
         cookie: {
             name: 'session',
-            password: 'supersecretpassword',
+            password: 'randomstringwith32ormorecharactershereokokok',
             isSecure: false,
         },
         redirectTo: '/login',
-        validate: auth.validateSession,
     });
 
     server.auth.default('session');
