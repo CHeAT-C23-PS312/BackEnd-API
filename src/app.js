@@ -1,36 +1,23 @@
 const axios = require('axios');
-const mysql = require('mysql');
+const connection = require('./database');
 const { createUser, getUserByUsername } = require('./auth');
 
 
-const DB_HOST = '34.101.187.193';
-const DB_USER = 'ucheat';
-const DB_PASSWORD = 'ucheat';
-const DB_NAME = 'db_cheat';
+const ML_MODEL_URL = process.env.ML_MODEL_URL || 'https://c23-389514.el.r.appspot.com/';
 
-const connection = mysql.createConnection({
-
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_NAME,
-});
-
-const ML_MODEL_URL = process.env.ML_MODEL_URL || 'http://your-ml-model-url';
-
-const getRecommendedRecipes = async (ingredients) => {
+const getRecommendedRecipes = async (messages) => {
     try {
-        const response = await axios.post(`${ML_MODEL_URL}/chatbot`, { ingredients });
+        const response = await axios.post(`${ML_MODEL_URL}/predict`, { messages });
         return response.data;
     } catch (error) {
-        console.error('Error calling ML model:', error);
+        console.error('Error processing request:', error);
         throw error;
     }
 };
 
 const getRecipeDetailFromMLModel = async (recipeId) => {
     try {
-        const response = await axios.get(`${ML_MODEL_URL}/recipes/${recipeId}`);
+        const response = await axios.post(`${ML_MODEL_URL}/recipe/${recipeId}`);
         return response.data;
     } catch (error) {
         console.error('Error calling ML model:', error);
@@ -99,13 +86,6 @@ const searchRecipes = async (query) => {
     }
 };
 
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to database:', err);
-        process.exit(1);
-    }
-    console.log('Connected to database');
-});
 
 module.exports = {
     getRecommendedRecipes,
@@ -116,4 +96,5 @@ module.exports = {
     createUser,
     getUserByUsername,
     searchRecipes,
+    connection,
 };

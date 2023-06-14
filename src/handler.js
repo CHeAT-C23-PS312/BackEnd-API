@@ -36,13 +36,12 @@ const login = async (request, h) => {
 };
 
 
-// const logout = async (request, h) => auth.clearSession(request, h);
 const logout = async (request, h) => clearSession(request, h);
 
 const chatbot = async (request, h) => {
-    const { ingredients } = request.payload;
+    const { messages } = request.payload;
     try {
-        const recipes = await app.getRecommendedRecipes(ingredients);
+        const recipes = await app.getRecommendedRecipes(messages);
         return h.response(recipes).code(200);
     } catch (error) {
         return h.response({ message: 'Error processing request' }).code(500);

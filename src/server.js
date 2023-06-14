@@ -1,12 +1,11 @@
 const Hapi = require('@hapi/hapi');
 const Cookie = require('@hapi/cookie');
 const routes = require('./routes');
-// const auth = require('./auth');
 
 const init = async () => {
     const server = Hapi.server({
         port: 8080,
-        host: '0.0.0.0',
+        host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
         routes: {
             cors: {
                 origin: ['*'],

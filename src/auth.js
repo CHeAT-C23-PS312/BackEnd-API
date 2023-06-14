@@ -1,26 +1,41 @@
-const users = [
-    {
-        id: 1,
-        username: 'user1',
-        password: 'password1',
-    },
-    {
-        id: 2,
-        username: 'user2',
-        password: 'password2',
-    },
-];
+const connection = require('./database');
 
-const getUserByUsername = (username) => users.find((user) => user.username === username);
+
+const getUserByUsername = (username) => new Promise((resolve, reject) => {
+    connection.query(
+        'SELECT * FROM users WHERE username = ?',
+        [username],
+        (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results[0]);
+            }
+        },
+    );
+});
+
 
 const createUser = (username, password) => {
     const newUser = {
-        id: users.length + 1,
         username,
         password,
     };
-    users.push(newUser);
-    return newUser;
+
+    return new Promise((resolve, reject) => {
+        connection.query(
+            'INSERT INTO users (username, password) VALUES (?, ?)',
+            [newUser.username, newUser.password],
+            (error, result) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    newUser.id = result.insertId;
+                    resolve(newUser);
+                }
+            },
+        );
+    });
 };
 
 
