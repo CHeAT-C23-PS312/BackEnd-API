@@ -12,7 +12,7 @@ This repository contains the source code for a Node.js application that provides
 - [Endpoints](#endpoints)
 - [Database](#database)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Getting Started
 
@@ -101,6 +101,4 @@ Contributions to this project are welcome. To contribute, follow these steps:
 4. Commit and push your changes.
 5. Submit a pull request.
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
