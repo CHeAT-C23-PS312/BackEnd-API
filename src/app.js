@@ -3,7 +3,7 @@ const connection = require('./database');
 const { createUser, getUserByUsername } = require('./auth');
 
 
-const ML_MODEL_URL = process.env.ML_MODEL_URL || 'https://c23-389514.el.r.appspot.com/';
+const ML_MODEL_URL = process.env.ML_MODEL_URL || 'https://model-ml-390012.et.r.appspot.com/';
 
 const getRecommendedRecipes = async (messages) => {
     try {
