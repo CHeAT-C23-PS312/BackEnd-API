@@ -1,4 +1,4 @@
-#CHeAT Application Readme
+# CHeAT Application Readme
 
 This repository contains the source code for a Node.js application that provides functionality for a calorie tracking and recipe recommendation system. The application utilizes MySQL as the database management system and integrates with a machine learning model to provide recipe recommendations.
 
